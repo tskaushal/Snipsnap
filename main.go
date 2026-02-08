@@ -32,6 +32,9 @@ func main() {
 
 	//  Connection to the  database
 	connStr := os.Getenv("DATABASE_URL")
+	if connStr == "" {
+		log.Fatal("DATABASE_URL is not set")
+	}
 
 	var err error
 	db, err = sql.Open("postgres", connStr)
