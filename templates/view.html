@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Paste</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        pre {
+            width: 80%;
+            margin: 40px auto;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        button {
+            padding: 8px 20px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Paste</h1>
+
+    <pre>{{ .Content }}</pre>
+
+    <button onclick="copyText()">Copy</button>
+
+    <script>
+        function copyText() {
+            const text = document.querySelector("pre").innerText;
+            navigator.clipboard.writeText(text);
+            alert("Copied!");
+        }
+    </script>
+</body>
+</html>
