@@ -1,48 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
     <title>Create Paste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
-            background: #0f172a;
-            color: white;
-            font-family: Arial;
-            text-align: center;
+            margin: 0;
+            background: #0d1117;
+            font-family: 'Inter', sans-serif;
+
+            color: #e6edf3;
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .card {
+            width: 900px;
+            max-width: 100%;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
         }
 
         textarea {
-            width: 80%;
+            width: 100%;
             height: 350px;
-            margin-top: 40px;
-            background: #1e293b;
-            color: white;
-            border: none;
-            border-radius: 10px;
+            background: #161b22;
+            color: #e6edf3;
+            border: 1px solid #30363d;
+            border-radius: 8px;
             padding: 15px;
             font-size: 14px;
+            resize: vertical;
+        }
+
+        .row {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         button {
-            margin-top: 20px;
-            padding: 10px 25px;
-            background: #3b82f6;
+            background: #238636;
             border: none;
-            color: white;
             border-radius: 6px;
+            padding: 8px 16px;
+            color: white;
             cursor: pointer;
-            font-size: 16px;
         }
 
         button:hover {
-            background: #2563eb;
+            background: #2ea043;
+        }
+
+        .subtle {
+            color: #8b949e;
+            font-size: 13px;
+        }
+
+        a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
+<div class="card">
     <h1>Create Paste</h1>
+
     <form method="POST">
-        <textarea name="content" placeholder="Paste your text here..."></textarea><br>
-        <button type="submit">Create</button>
+        <textarea name="content" placeholder="Paste your code or text here..."></textarea>
+
+        <div class="row">
+            <button type="submit">Create Paste</button>
+            <span class="subtle">Expires in 24 hours</span>
+        </div>
     </form>
+
+    <div class="row">
+        <a href="/">← Back to Home</a>
+    </div>
+</div>
+
 </body>
 </html>

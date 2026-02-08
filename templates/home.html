@@ -1,39 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
     <title>SnipSnap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
-            background: #0f172a;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 120px;
+            margin: 0;
+            background: #0d1117;
+            font-family: 'Inter', sans-serif;
+
+            color: #e6edf3;
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .card {
+            width: 900px;
+            max-width: 100%;
         }
 
         h1 {
-            font-size: 42px;
+            font-size: 28px;
+            margin-bottom: 20px;
         }
 
-        a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
+        textarea {
+            width: 100%;
+            height: 300px;
+            background: #161b22;
+            color: #e6edf3;
+            border: 1px solid #30363d;
             border-radius: 8px;
-            font-size: 18px;
+            padding: 15px;
+            font-size: 14px;
+            resize: vertical;
         }
 
-        a:hover {
-            background: #2563eb;
+        .row {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input {
+            background: #161b22;
+            color: #e6edf3;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 8px;
+        }
+
+        button {
+            background: #238636;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 14px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2ea043;
+        }
+
+        .divider {
+            margin: 30px 0;
+            border-top: 1px solid #30363d;
+        }
+
+        .subtle {
+            color: #8b949e;
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
+
+<div class="card">
     <h1>SnipSnap</h1>
-    <p>Simple, fast paste sharing.</p>
-    <a href="/create">Create Paste</a>
+
+    <form action="/create" method="POST">
+        <textarea name="content" placeholder="Paste your code or text here..."></textarea>
+
+        <div class="row">
+            <button type="submit">Create Paste</button>
+            <span class="subtle">Expires in 24 hours</span>
+        </div>
+    </form>
+
+    <div class="divider"></div>
+
+    <div class="row">
+        <input type="text" id="pasteId" placeholder="Enter paste ID..." />
+        <button onclick="goToPaste()">Open</button>
+    </div>
+</div>
+
+<script>
+function goToPaste() {
+    const id = document.getElementById("pasteId").value.trim();
+    if (id) {
+        window.location.href = "/view/" + id;
+    }
+}
+</script>
+
 </body>
 </html>

@@ -1,60 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
     <title>Your Paste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
-            background: #0f172a;
-            color: white;
-            font-family: Arial;
+            margin: 0;
+            background: #0d1117;
+            font-family: 'Inter', sans-serif;
+
+            color: #e6edf3;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px;
+            justify-content: center;
+            padding: 60px 20px;
         }
 
-        .container {
-            width: 800px;
-            max-width: 90%;
+        .card {
+            width: 900px;
+            max-width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         pre {
-            background: #1e293b;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
             padding: 20px;
-            border-radius: 10px;
             overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .row {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
         }
 
         input {
-            width: 70%;
-            padding: 8px;
+            flex: 1;
+            background: #161b22;
+            color: #e6edf3;
+            border: 1px solid #30363d;
             border-radius: 6px;
-            border: none;
+            padding: 8px;
         }
 
         button {
-            padding: 8px 15px;
-            background: #3b82f6;
+            background: #238636;
             border: none;
             border-radius: 6px;
+            padding: 8px 14px;
             color: white;
             cursor: pointer;
-            margin-left: 10px;
         }
 
         button:hover {
-            background: #2563eb;
+            background: #2ea043;
+        }
+
+        .subtle {
+            color: #8b949e;
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="card">
     <h1>Your Paste</h1>
 
-    <div style="margin-bottom:20px;">
-        <input type="text" value="{{ .URL }}" id="shareLink" readonly />
+    <div class="row">
+        <input type="text" id="shareLink" value="{{ .URL }}" readonly />
         <button onclick="copyLink()">Copy Link</button>
+    </div>
+
+    <div class="row">
+        <button onclick="copyContent()">Copy Content</button>
+        <a href="/" class="subtle">Create another</a>
     </div>
 
     <pre>{{ .Content }}</pre>
@@ -63,9 +91,12 @@
 <script>
 function copyLink() {
     const link = document.getElementById("shareLink");
-    link.select();
     navigator.clipboard.writeText(link.value);
-    alert("Link copied!");
+}
+
+function copyContent() {
+    const text = document.querySelector("pre").innerText;
+    navigator.clipboard.writeText(text);
 }
 </script>
 
