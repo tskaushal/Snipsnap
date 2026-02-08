@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -30,7 +31,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	//  Connection to the  database
-	connStr := "postgres://postgres:postgres@localhost:5432/pastebin?sslmode=disable"
+	connStr := os.Getenv("DATABASE_URL")
 
 	var err error
 	db, err = sql.Open("postgres", connStr)
