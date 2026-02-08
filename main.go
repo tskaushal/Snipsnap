@@ -53,8 +53,14 @@ func main() {
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/view/", viewHandler)
 
-	log.Println("Server running on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	log.Println("Server running on port", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
+
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
