@@ -131,13 +131,14 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = t.Execute(w, struct {
+	fullURL := "https://" + r.Host + "/view/" + id
+
+	t.Execute(w, struct {
 		Content string
+		URL     string
 	}{
 		Content: content,
+		URL:     fullURL,
 	})
 
-	if err != nil {
-		http.Error(w, "Execution error", http.StatusInternalServerError)
-	}
 }

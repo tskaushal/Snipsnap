@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Paste</title>
+    <title>Your Paste</title>
     <style>
         body {
             background: #0f172a;
             color: white;
             font-family: Arial;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .container {
+            width: 800px;
+            max-width: 90%;
         }
 
         pre {
-            width: 80%;
-            margin: 40px auto;
             background: #1e293b;
             padding: 20px;
             border-radius: 10px;
             overflow-x: auto;
-            text-align: left;
+        }
+
+        input {
+            width: 70%;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
         }
 
         button {
-            padding: 8px 20px;
+            padding: 8px 15px;
             background: #3b82f6;
             border: none;
             border-radius: 6px;
             color: white;
             cursor: pointer;
+            margin-left: 10px;
         }
 
         button:hover {
@@ -35,18 +48,26 @@
     </style>
 </head>
 <body>
+
+<div class="container">
     <h1>Your Paste</h1>
 
+    <div style="margin-bottom:20px;">
+        <input type="text" value="{{ .URL }}" id="shareLink" readonly />
+        <button onclick="copyLink()">Copy Link</button>
+    </div>
+
     <pre>{{ .Content }}</pre>
+</div>
 
-    <button onclick="copyText()">Copy</button>
+<script>
+function copyLink() {
+    const link = document.getElementById("shareLink");
+    link.select();
+    navigator.clipboard.writeText(link.value);
+    alert("Link copied!");
+}
+</script>
 
-    <script>
-        function copyText() {
-            const text = document.querySelector("pre").innerText;
-            navigator.clipboard.writeText(text);
-            alert("Copied!");
-        }
-    </script>
 </body>
 </html>
