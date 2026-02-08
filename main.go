@@ -53,10 +53,14 @@ func main() {
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/view/", viewHandler)
 
-	port := os.Getenv("PORT")
+port := os.Getenv("PORT")
 if port == "" {
-    log.Fatal("PORT is not set")
+    port = "8080" 
 }
+
+log.Println("Server running on port", port)
+log.Fatal(http.ListenAndServe(":"+port, nil))
+
 
 	log.Println("Server running on port", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
